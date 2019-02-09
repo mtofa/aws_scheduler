@@ -127,7 +127,7 @@ Then click save schedule
 > Else, AWS scheduler could not find the EC2 instance/s 
 
 > If you specify a start time only, the instance must be stopped manually. Similarly, if you specify a stop time only, the instance must be started manually. 
-> You can also choose to run instances during specific days of the week.
+> You can choose to run instances during specific days of the week.
 
 That's it!
 
