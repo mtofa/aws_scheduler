@@ -8,7 +8,7 @@ AWS scheduler is a Django based web application that enable users to easily conf
 
 
 #### Tech Stacks
-Python 3.7, Django 2.1.4, Boto3, Celery, Rabbitmq, Sqlite
+Python 3.7, Django 2.1.4, Boto3, Celery, Rabbitmq, Sqlite, Docker
 
 ###  What you'll need before starting
 
