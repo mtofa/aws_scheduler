@@ -1,0 +1,22 @@
+<a href={% url 'new'%} class="btn btn-info float-right" role="button">Add Schedule</a>
+<br/><br/><br/>
+{% for schedule in schedule_info%}
+<div class="each-box">
+    <div class="shawod-box">
+    <div class="row extra-margin-schedule">
+        <div class="col-8 vcenter">
+            <a href="{% url 'edit' pk=schedule.pk %}">{{schedule.title}}</a>
+        </div>
+        <div class="col-4">
+            <button data-id={{schedule.id}} onclick="deleteScheduleEntry(this)" class="btn btn-danger pull-right">
+                Delete
+            </button>
+        </div>
+    </div>
+</div>
+</div>
+
+{% endfor %}
+
+
+

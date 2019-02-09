@@ -1,0 +1,12 @@
+<ul class="list-group">
+    {% for region in regions %}
+    <li class="list-group-item">
+        <a href="{% url 'details' pk=region.id %}">
+            <div class="badge badge-primary">{{ region.location}}</div>
+            <br/>
+            <div class="badge badge-pill badge-info">{{ region.name }}</div>
+        </a>
+
+    </li>
+    {% endfor %}
+</ul>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="google" content="notranslate">
+    <meta http-equiv="Content-Language" content="en">
+    <title>AWS Toolbox</title>
+    {% load static %}
+    {% url 'index' as home %}
+    <!-- Bootstrap Core CSS -->
+    <link href="{% static 'scheduler/css/bootstrap.min.css' %}" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="vertical-center">
+    <div class="container">
+
+        <div class="row">
+            <div class="col-4">
+
+            </div>
+            <div class="col-4">
+                {% block content %}
+
+                {% endblock %}
+
+            </div>
+            <div class="col-4">
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+<!-- Footer -->
+<footer class="page-footer font-small blue">
+
+    <!-- Copyright -->
+    <div class="footer-copyright text-center py-3"></div>
+    <!-- Copyright -->
+
+</footer>
+
+
+</body>
+
+</html>

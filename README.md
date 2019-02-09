@@ -1,10 +1,14 @@
-# AWS Schedular
+# AWS Scheduler
 
-AWS scheduler is a Django(Python) based web application that can be used to  
-configure custom start and stop schedules of Amazon EC2 instances.
+> Amazon Web Services (AWS) offers infrastructure on demand so that customers can control their resource capacity and pay only for what they consume. 
+One simple method to reduce costs is to stop resources that are not in use, and then start those resources again when their capacity is needed.
+
+AWS scheduler is a Django based web application that enable users to easily configure custom start and stop schedules for their Amazon Elastic Compute Cloud (Amazon EC2).
+
+
 
 #### Tech Stacks
-Python, Django 2.1.4, Celery, Rabbitmq
+Python 3.7, Django 2.1.4, Boto3, Celery, Rabbitmq, Sqlite
 
 ###  What you'll need before starting
 
@@ -25,11 +29,11 @@ docker-compose version 1.23.2, build 1110ad01
 #### Get your Access Key and Secret access key from AWS
 https://console.aws.amazon.com/iam/home?region=us-east-2#/security_credentials
 
-### Setup
+## Setup
 
 #####  1 ) Rename `.env_sample` to `.env`
 
-Then add your access key in `.env` file
+Then add your access keys in `.env` file
 (In production, use [role](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html) instead of access key)
 
 ```
@@ -67,11 +71,12 @@ TIME_ZONE = 'Australia/Adelaide'
 List of [timezones](Timezone_list.txt)
 
 ##### 3) Run Docker
-
+ 
 ```
 cd aws_scheduler
-docker-compose up
+docker-compose up --build 
 ```
+
 
 
 
@@ -90,6 +95,7 @@ Go to Tags -> Manage Tags
 
 https://us-east-2.console.aws.amazon.com/ec2/v2/home?region=us-east-2#manage-tags
 ![EC2 tags](tags.png)
+
 
 ##### 2) Login to AWS Scheduler
 
@@ -117,10 +123,15 @@ ie. You want to start an instance on Monday at 9:05 AM and stop at 5:05 pm.
 ![schedule tags](schedule_tags.png)
 
 Then click save schedule
+> Note: Tag is case-sensitive. Both tag and tag's value must match.
+> Else, AWS scheduler could not find the EC2 instance/s 
+
+> If you specify a start time only, the instance must be stopped manually. Similarly, if you specify a stop time only, the instance must be started manually. 
+> You can also choose to run instances during specific days of the week.
 
 That's it!
 
-### Advanced configuration
+## Advanced configuration
 
 AWs scheduler runs three cron jobs
 
@@ -129,7 +140,7 @@ It synchronises local database with AWS. It gets all the instances that match th
 tags. By default it runs every hour.
 
 
-##### 2) start-sc2-instances 
+##### 2) start-ec2-instances
 It starts all instances according to schedule & tag/s. By default, it runs every 5 minutes.
 
 
@@ -149,7 +160,7 @@ CELERY_BEAT_SCHEDULE = {
         'task': 'scheduler.tasks.get_ec2_by_tags',
         'schedule': crontab(minute='0', hour='*'),
     },
-    'start-sc2-instances': {
+    'start-ec2-instances': {
         'task': 'scheduler.tasks.start_ec2_ins',
         'schedule': crontab(minute='*/5', hour='*'),
     },

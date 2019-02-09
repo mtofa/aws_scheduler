@@ -1,0 +1,137 @@
+{% load static %}
+{% load scheduler_extras %}
+<div class="container">
+    <div class="row ">
+        <div class="col-12">
+            <button type="submit" class="btn btn-success pull-right" id='submit-schedule'>Update Schedule</button>
+        </div>
+    </div>
+    <br/>
+    <div class="shawod-box">
+        <input id="action_type" type="hidden" value="{{ action }}">
+        <div class="row extra-margin">
+            <div class="col-2">Name</div>
+            <div class="col-8"><input type="text" class="form-control" id="schedule-name"
+                                      value="{{schedule_info.title}}" placeholder="Schedule name ">
+
+            </div>
+        </div>
+        <div class="row extra-margin">
+            <div class="col-2">Description</div>
+            <div class="col-8"><input type="text" class="form-control" id="schedule-desc"
+                                      value="{{schedule_info.description}}" placeholder="Description ">
+            </div>
+        </div>
+    </div>
+
+    <div class="shawod-box">
+        <div class="row align-items-center row_day_start_stop">
+            <div class="col-sm day_text_center">
+                Day
+            </div>
+
+            <div class="col-sm start_text_center">
+                Start
+            </div>
+            <div class="col-sm stop_text_center">
+                Stop
+            </div>
+        </div>
+        <div class="row row-padding-hour-minute">
+            <div class="col-sm"></div>
+            <div class="col-sm">
+                <div class="row">
+                    <div class="col-sm">Hour</div>
+                    <div class="col-sm">Minute</div>
+                    <div class="col-sm"></div>
+                </div>
+            </div>
+            <div class="col-sm">
+                <div class="row">
+                    <div class="col-sm">Hour</div>
+                    <div class="col-sm">Minute</div>
+                    <div class="col-sm"></div>
+                </div>
+            </div>
+        </div>
+        {% for schedule_dtl in schedule_dtls %}
+        <div class="row row-padding">
+            <input id="{{schedule_dtl.day_name}}_order" type="hidden" value="{{ forloop.counter }}">
+
+            <div class="col-sm">
+                {{schedule_dtl.day_name|title}}
+            </div>
+            <div class="col">
+                <div class="row">
+                    <div class="col-sm">
+                        <div>{% select_tag schedule_dtl.start_hour schedule_dtl.day_name 'start_hour' 24 %}</div>
+                    </div>
+                    <div class="col-sm">
+                        <div>{% select_tag schedule_dtl.start_minute schedule_dtl.day_name 'start_minute' 60 %}</div>
+                    </div>
+                    <div class="col-sm"></div>
+                </div>
+            </div>
+            <div class="col-sm">
+                <div class="row">
+                    <div class="col-sm">
+                        <div>{% select_tag schedule_dtl.stop_hour schedule_dtl.day_name 'stop_hour' 24 %}</div>
+                    </div>
+                    <div class="col-sm">
+                        <div>{% select_tag schedule_dtl.stop_minute schedule_dtl.day_name 'stop_minute' 60 %}</div>
+                    </div>
+                    <div class="col-sm"></div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+
+    <div class="shawod-box">
+        <legend>APPLY BY INSTANCE TAG</legend>
+
+        <div class="row">
+            <div class="col-md-4">
+                Key
+            </div>
+            <div class="col-md-4">
+
+                Value
+            </div>
+            <div class="col-md-4">
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+
+                <input type="text" class="form-control" id="inputkey" placeholder="">
+            </div>
+            <div class="col-md-4">
+
+                <input type="text" class="form-control" id="inputvalue" placeholder="">
+            </div>
+            <div class="col-md-4">
+                <button type="submit" class="btn btn-primary" id="addtag">Add</button>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-8">
+                <ul class="list-group" id="tag-list-group">
+                    {% for tag in schedule_tags %}
+                    <li class="list-group-item list-group-item-light" key="{{tag.key_name}}" value="{{tag.value}}"><span
+                            class="badge badge-info">{{tag.key_name}}</span>&nbsp;<span class="badge badge-secondary">{{tag.value}}</span><a
+                            href="#" class="removeitem pull-right">x</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="{% static 'scheduler/js/custom_schedule.js' %}"></script>
+
+
+

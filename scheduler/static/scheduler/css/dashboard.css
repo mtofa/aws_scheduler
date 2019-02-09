@@ -1,0 +1,134 @@
+/*
+ * Base structure
+ */
+
+/* Move down content because we have a fixed navbar that is 50px tall */
+body {
+  padding-top: 50px;
+}
+
+/*
+ * Typography
+ */
+
+h1 {
+  margin-bottom: 20px;
+  padding-bottom: 9px;
+  border-bottom: 1px solid #eee;
+}
+
+/*
+ * Sidebar
+ */
+
+.sidebar {
+  position: fixed;
+  top: 51px;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+  padding: 20px;
+  overflow-x: hidden;
+  overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+  border-right: 1px solid #eee;
+}
+
+/* Sidebar navigation */
+.sidebar {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.sidebar .nav {
+  margin-bottom: 20px;
+}
+
+.sidebar .nav-item {
+  width: 100%;
+}
+
+.sidebar .nav-item + .nav-item {
+  margin-left: 0;
+}
+
+.sidebar .nav-link {
+  border-radius: 0;
+}
+
+/*
+ * Dashboard
+ */
+
+ /* Placeholders */
+.placeholders {
+  padding-bottom: 3rem;
+}
+
+.placeholder img {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
+li{
+  margin: 10px 0;
+}
+.row_day_start_stop{
+border-bottom: 1px solid gray;
+padding: 5px;
+margin:10px;
+font-weight: bold;
+}
+.day_text_center{
+margin-left:30px !important;
+}
+.start_text_center{
+margin-left:90px !important;
+}
+.stop_text_center{
+margin-left:5% !important;
+}
+.row-padding-hour-minute{
+margin:10px;
+}
+.row-padding{
+border-top: 1px dotted gray;
+padding: 5px;
+margin:10px;
+}
+
+.extra-margin{
+padding: 5px;
+margin:10px;
+}
+
+.shawod-box{
+-webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+padding: 10px;
+margin:20px;
+
+}
+
+.extra-margin-schedule{
+padding: 1px;
+margin:5px;
+}
+
+.vcenter {
+    padding:5px;
+    float:none;
+}
+
+.center_div{
+    margin: 0 auto;
+    width:80% /* value of your choice which suits your alignment */
+}
+
+.form-group.required .control-label:after {
+    color: #d00;
+    content: "*";
+    position: absolute;
+    margin-left: 8px;
+    top:7px;
+}

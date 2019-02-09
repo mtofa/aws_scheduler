@@ -1,0 +1,5 @@
+.idea/
+aws_tool_box/boto/config
+*.pyc
+.env
+celerybeat-schedule

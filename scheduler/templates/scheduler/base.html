@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="google" content="notranslate">
+    <meta http-equiv="Content-Language" content="en">
+    <title>AWS Toolbox</title>
+    {% load static %}
+    {% url 'index' as home %}
+    <!-- Bootstrap Core CSS -->
+    <link href="{% static 'scheduler/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+          integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <!-- Custom CSS -->
+    <link href="{% static 'scheduler/css/dashboard.css' %}" rel="stylesheet">
+
+    <script src="{% static 'scheduler/js/jquery.js' %}"></script>
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <a class="navbar-brand" href="{{ home }}">AWS Tool Box</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+                        aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarText">
+                    <ul class="navbar-nav mr-auto">
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ home }}">Schedule</a>
+                        </li>
+                    </ul>
+                    <span class="navbar-text">
+                        {% if user.is_authenticated %}
+                        Hi {{ user.username }}!
+                        <br/>
+                     <p class="badge badge-warning" ><a href="{% url 'logout' %}?next=/">Logout</a></p>
+                        {% else %}
+                          <p>You are not logged in</p>
+                          <a href="{% url 'login' %}">login</a>
+                        {% endif %}
+                    </span>
+                </div>
+
+            </nav>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12"><br></div>
+    </div>
+    {% block content %}
+
+    {% endblock %}
+
+
+</div>
+
+<!-- Footer -->
+<footer class="page-footer font-small blue">
+
+    <!-- Copyright -->
+    <div class="footer-copyright text-center py-3"></div>
+    <!-- Copyright -->
+
+</footer>
+<!-- Footer -->
+<script src="{% static 'scheduler/js/custom.js' %}"></script>
+
+<script>
+        var csrf_token = '{{ csrf_token }}'
+
+
+
+</script>
+
+</body>
+
+</html>

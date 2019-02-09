@@ -1,0 +1,53 @@
+<div class="table-responsive ">
+    <table class="table table-striped table-hover" id="scheduleTable">
+        <thead>
+        <tr>
+            <th scope="col">Instance/s</th>
+            <th scope="col">Monday</th>
+            <th scope="col">Tuesday</th>
+            <th scope="col">Wednesday</th>
+            <th scope="col">Thursday</th>
+            <th scope="col">Friday</th>
+            <th scope="col">Saturday</th>
+            <th scope="col">Sunday</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for instance_id, schedule in schedules.items %}
+        <tr id="{{instance_id}}">
+            <th scope="row">{{ instance_id  }}</th>
+            <input type="hidden" id="{{instance_id}}_instance_row_id" value="{{schedule.id}}">
+            {% for item in schedule %}
+
+
+            <td>
+                {{ item.schedules__day_name}}
+                <select class="form-control" id="status_{{day}}{{instance.instance_id}}">
+                    <option value="False">Disable</option>
+                    <option value="True" selected >Enable</option>
+                </select>
+                <br>
+                Start
+                {{instance.start_hour}}
+                <select class="form-control" id="{{day}}_on_{{instance.instance_id}}">
+                    {% include 'scheduler/_time.html'%}
+                </select>
+                <br>
+                Stop
+                <select class="form-control" id="{{day}}_off_{{instance.instance_id}}">
+                    {% include 'scheduler/_time.html'%}
+                </select>
+            </td>
+            {% endfor %}
+
+            <td>
+                <button type="button" id="{{instance.instance_id}}_save" class="btn btn-info saveSchedule">Save</button>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+

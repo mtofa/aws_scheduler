@@ -1,0 +1,13 @@
+{% extends 'scheduler/base.html' %}
+{% block content %}
+<div class="row">
+
+    <div class="col-2">
+    {% include 'scheduler/_regions.html'%}
+    </div>
+    <div class="col-10">
+        {% include 'scheduler/_schedule.html'%}
+    </div>
+
+</div>
+{% endblock %}

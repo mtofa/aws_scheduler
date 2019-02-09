@@ -1,0 +1,5 @@
+Django==2.1.4
+django_extensions
+boto3
+celery>=4.2,<4.3
+ipython

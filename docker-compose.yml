@@ -1,0 +1,28 @@
+version: '3'
+
+volumes:
+  pgdata:
+
+services:
+  web: &python
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: python3 manage.py runserver 0.0.0.0:8000
+    env_file:
+      - .env
+    volumes:
+      - .:/code
+    ports:
+      - "8000:8000"
+    depends_on:
+      - rabbitmq
+      - celery_worker
+  rabbitmq:
+    image: rabbitmq:3.7-alpine
+  celery_worker:
+    <<: *python
+    command: celery -A scheduler worker --loglevel=info -B
+    ports: []
+    depends_on:
+      - rabbitmq

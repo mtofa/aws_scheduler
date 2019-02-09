@@ -1,0 +1,130 @@
+{% load static %}
+{% load scheduler_extras %}
+<div class="container">
+    <div class="row ">
+        <div class="col-12">
+            <button type="submit" class="btn btn-success pull-right" id='submit-schedule'>Save Schedule</button>
+        </div>
+    </div>
+    <br/>
+    <div class="shawod-box">
+        <input id="action_type" type="hidden" value="{{ action }}">
+        <div class="row extra-margin">
+            <div class="col-2">Name</div>
+            <div class="col-8"><input type="text" class="form-control" id="schedule-name" value=""  required="required">
+            </div>
+        </div>
+        <div class="row extra-margin">
+            <div class="col-2">Description</div>
+            <div class="col-8"><input type="text" class="form-control" id="schedule-desc" value="" >
+            </div>
+        </div>
+    </div>
+
+    <div class="shawod-box">
+        <div class="row align-items-center row_day_start_stop">
+            <div class="col-sm day_text_center">
+                Day
+            </div>
+
+            <div class="col-sm start_text_center">
+                Start
+            </div>
+            <div class="col-sm stop_text_center">
+                Stop
+            </div>
+        </div>
+        <div class="row row-padding-hour-minute">
+            <div class="col-sm"></div>
+            <div class="col-sm">
+                <div class="row">
+                    <div class="col-sm">Hour</div>
+                    <div class="col-sm">Minute</div>
+                    <div class="col-sm"></div>
+                </div>
+            </div>
+            <div class="col-sm">
+                <div class="row">
+                    <div class="col-sm">Hour</div>
+                    <div class="col-sm">Minute</div>
+                    <div class="col-sm"></div>
+                </div>
+            </div>
+        </div>
+        {% for day in days %}
+        <div class="row row-padding">
+            <input id="{{day}}_order" type="hidden" value="{{ forloop.counter }}">
+
+            <div class="col-sm">
+                {{day|title}}
+            </div>
+            <div class="col">
+                <div class="row">
+                    <div class="col-sm">
+                        <div>{% select_tag '' day 'start_hour' 24 %}</div>
+                    </div>
+                    <div class="col-sm">
+                        <div>{% select_tag '' day 'start_minute' 60 %}</div>
+                    </div>
+                    <div class="col-sm"></div>
+                </div>
+            </div>
+            <div class="col-sm">
+                <div class="row">
+                    <div class="col-sm">
+                        <div>{% select_tag '' day 'stop_hour' 24 %}</div>
+                    </div>
+                    <div class="col-sm">
+                        <div>{% select_tag '' day 'stop_minute' 60 %}</div>
+                    </div>
+                    <div class="col-sm"></div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+
+    <div class="shawod-box">
+        <legend>APPLY BY INSTANCE TAG</legend>
+
+        <div class="row">
+            <div class="col-md-4">
+                Key
+            </div>
+            <div class="col-md-4">
+
+                Value
+            </div>
+            <div class="col-md-4">
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+
+                <input type="text" class="form-control" id="inputkey" placeholder="">
+            </div>
+            <div class="col-md-4">
+
+                <input type="text" class="form-control" id="inputvalue" placeholder="">
+            </div>
+            <div class="col-md-4">
+                <button type="submit" class="btn btn-primary" id="addtag">Add</button>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-8">
+                <ul class="list-group" id="tag-list-group">
+
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="{% static 'scheduler/js/custom_schedule.js' %}"></script>
+
+
+
