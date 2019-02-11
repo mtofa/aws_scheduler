@@ -20,7 +20,7 @@ Skill level: Working knowledge of Django/Ruby on Rails and Docker & Docker-compo
 ### Prerequisites
 
 #### Install Docker & Docker-compose
-I have used version `docker-compose version 1.23.2`. However, previous version of Docker compose may work. 
+I used `docker-compose version 1.23.2`. However, previous version may work. 
 ```
 docker-compose -v
 docker-compose version 1.23.2, build 1110ad01
